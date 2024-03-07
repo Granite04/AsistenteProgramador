@@ -18,14 +18,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import control.funciones.FuncionesVista;
 import modelo.Variables;
-import javax.swing.JTextPane;
 
-public class ObjetosVista extends JFrame {
+public class BaseDatosVista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -34,8 +34,8 @@ public class ObjetosVista extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("serial")
-	public ObjetosVista() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjetosVista.class.getResource("/modelo/img/icono.png")));
+	public BaseDatosVista() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(BaseDatosVista.class.getResource("/modelo/img/icono.png")));
     	setTitle("Asistente de Programacion");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(Variables.cordX, Variables.cordY, Variables.resolucionX, Variables.resolucionY);
@@ -56,7 +56,7 @@ public class ObjetosVista extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblTitulo = new JLabel("Objetos");
+        JLabel lblTitulo = new JLabel("Base de Datos");
         lblTitulo.setForeground(Color.MAGENTA);
         lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -85,22 +85,22 @@ public class ObjetosVista extends JFrame {
         panelBotones.add(principal);
 
         JButton objetos = new JButton("Objetos");
-        objetos.setBackground(Color.RED);
+        objetos.setBackground(Color.WHITE);
         objetos.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+        		FuncionesVista.abrirObjetos();
+        		dispose();
         	}
         });
         objetos.setPreferredSize(new Dimension(150, 30));
         panelBotones.add(objetos);
         
         JButton btnBD = new JButton("Base de Datos");
-        btnBD.setBackground(Color.WHITE);
+        btnBD.setBackground(Color.RED);
         btnBD.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        		FuncionesVista.abrirBaseDatos();
-        		dispose();
         	}
         });
         btnBD.setPreferredSize(new Dimension(150, 30));
@@ -163,7 +163,7 @@ public class ObjetosVista extends JFrame {
         scrollContenido.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         JTextPane txtpnPackagePlantillasPublic = new JTextPane();
-        txtpnPackagePlantillasPublic.setText("public class Objeto {\r\n\r\n\tprivate String variable;\r\n\r\n\t// ----------Constructor----------//\r\n\tpublic Objeto() {\r\n\t\tthis.variable = \"\";\r\n\t}\r\n\tpublic Objeto(String variable) {\r\n\t\tthis.variable = variable;\r\n\t}\r\n\t// ----------Constructor----------//\r\n\r\n\t\r\n\t// --------------SET--------------//\r\n\tpublic void setVariable(String variable) {\r\n\t\tthis.variable = variable;\r\n\t}\r\n\t// --------------SET--------------//\r\n\r\n\t\r\n\t// --------------GET--------------//\r\n\tpublic String getVariable() {\r\n\t\treturn variable;\r\n\t}\r\n\t// --------------GET--------------//\r\n\r\n\t\r\n\t// -----------toString------------//\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn \"Ejemplo [variable=\" + variable + \"]\";\r\n\t}\r\n\t// -----------toString------------//\r\n\r\n}\r\n");
+        txtpnPackagePlantillasPublic.setText("import java.sql.Connection;\r\nimport java.sql.DriverManager;\r\nimport java.sql.SQLException;\r\n\r\npublic class Konexioa {\r\n\r\n    static String respuesta;\r\n\r\n    public static Connection konektatua;\r\n    \r\n    public static void konexioa() {\r\n        try {\r\n        \tClass.forName(\"com.mysql.cj.jdbc.Driver\");\r\n\r\n            String url = \"jdbc:mysql://localhost:3307/agenda\";\r\n            String user = \"root\";\r\n            String pass = \"\";\r\n\r\n            konektatua = DriverManager.getConnection(url, user, pass); \r\n            System.out.println(\"konektatuta\");\r\n        } catch (ClassNotFoundException | SQLException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n    \r\n    public static void konexioaExit() {\r\n    \ttry {\r\n\t        konektatua.close();\r\n\t\t} catch (SQLException e) {\r\n\t\t\te.printStackTrace();\r\n\t\t}\r\n    }\r\n    \r\n}\r\n");
         scrollContenido.setViewportView(txtpnPackagePlantillasPublic);
         txtpnPackagePlantillasPublic.setCaretPosition(0); // Mueve el cursor al principio del JTextPane
         scrollContenido.getViewport().setViewPosition(new Point(0, 0)); // Mueve el JScrollPane al principio del JTextPane
@@ -174,6 +174,6 @@ public class ObjetosVista extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+	}
 
 }

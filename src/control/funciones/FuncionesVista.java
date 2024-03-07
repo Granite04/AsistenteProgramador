@@ -39,5 +39,23 @@ public class FuncionesVista {
 			e.printStackTrace();
 		}
 	}
-		
+	
+	public static void abrirBaseDatos() {
+		try {
+			BaseDatosVista frame = new BaseDatosVista();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void abrirDAO() {
+		try {
+			DaoVista frame = new DaoVista();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

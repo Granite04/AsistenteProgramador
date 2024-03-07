@@ -116,25 +116,29 @@ public class PrincipalVista extends JFrame {
         objetos.setPreferredSize(new Dimension(150, 30));
         panelBotones.add(objetos);
         
-        JButton btnNewButton_1_6 = new JButton("Botón 2");
-        btnNewButton_1_6.setBackground(Color.WHITE);
-        btnNewButton_1_6.addActionListener(new ActionListener() {
+        JButton btnBD = new JButton("Base de Datos");
+        btnBD.setBackground(Color.WHITE);
+        btnBD.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+        		FuncionesVista.abrirBaseDatos();
+        		dispose();
         	}
         });
-        btnNewButton_1_6.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnNewButton_1_6);
+        btnBD.setPreferredSize(new Dimension(150, 30));
+        panelBotones.add(btnBD);
         
-        JButton btnNewButton_1_5 = new JButton("Botón 2");
-        btnNewButton_1_5.setBackground(Color.WHITE);
-        btnNewButton_1_5.addActionListener(new ActionListener() {
+        JButton btnDAO = new JButton("DAO");
+        btnDAO.setBackground(Color.WHITE);
+        btnDAO.addActionListener(new ActionListener() {
         	public void actionPerformed(ActionEvent e) {
         		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+        		FuncionesVista.abrirDAO();
+        		dispose();
         	}
         });
-        btnNewButton_1_5.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnNewButton_1_5);
+        btnDAO.setPreferredSize(new Dimension(150, 30));
+        panelBotones.add(btnDAO);
         
         JButton btnNewButton_1_4 = new JButton("Botón 2");
         btnNewButton_1_4.setBackground(Color.WHITE);
