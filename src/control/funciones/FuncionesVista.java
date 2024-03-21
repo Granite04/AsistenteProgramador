@@ -58,4 +58,13 @@ public class FuncionesVista {
 		}
 	}
 	
+	public static void abrirArchivosTXT() {
+		try {
+			ArchivosTXT_Vista frame = new ArchivosTXT_Vista();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 }

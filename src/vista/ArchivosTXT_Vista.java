@@ -18,26 +18,27 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import control.funciones.FuncionesVista;
+import control.funciones.usuario.FuncionesMasMenos;
 import modelo.Variables;
-import javax.swing.JTextPane;
 
-public class ObjetosVista extends JFrame {
+public class ArchivosTXT_Vista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-
+	
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings("serial")
-	public ObjetosVista() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(ObjetosVista.class.getResource("/modelo/img/icono.png")));
+	public ArchivosTXT_Vista() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage(ArchivosTXT_Vista.class.getResource("/modelo/img/icono.png")));
     	setTitle("Asistente de Programacion");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(Variables.cordX, Variables.cordY, Variables.resolucionX, Variables.resolucionY);
 
         // Crear el contentPane principal con imagen de fondo
@@ -56,7 +57,7 @@ public class ObjetosVista extends JFrame {
         setContentPane(contentPane);
         contentPane.setLayout(new BorderLayout(0, 0));
         
-        JLabel lblTitulo = new JLabel("Objetos");
+        JLabel lblTitulo = new JLabel("DAO");
         lblTitulo.setForeground(Color.MAGENTA);
         lblTitulo.setFont(new Font("Tahoma", Font.BOLD, 20));
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,11 +71,20 @@ public class ObjetosVista extends JFrame {
 	        panelLateral.add(panelMasMenos, BorderLayout.SOUTH);
 	
 		        JButton btnMas = new JButton("+");
+		        btnMas.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        		FuncionesMasMenos.obtenerNombreApunte();
+		        	}
+		        });
 		        panelMasMenos.add(btnMas);
 		
 		        JButton btnMenps = new JButton("-");
+		        btnMenps.addActionListener(new ActionListener() {
+		        	public void actionPerformed(ActionEvent e) {
+		        	}
+		        });
 		        panelMasMenos.add(btnMenps);
-
+	
 	        JScrollPane scrollBotones = new JScrollPane();
 	        scrollBotones.setOpaque(true);
 	        panelLateral.add(scrollBotones, BorderLayout.CENTER);
@@ -98,10 +108,12 @@ public class ObjetosVista extends JFrame {
 			        panelBotones.add(principal);
 			
 			        JButton objetos = new JButton("Objetos");
-			        objetos.setBackground(Color.RED);
+			        objetos.setBackground(Color.WHITE);
 			        objetos.addActionListener(new ActionListener() {
 			        	public void actionPerformed(ActionEvent e) {
 			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        		FuncionesVista.abrirObjetos();
+			        		dispose();
 			        	}
 			        });
 			        objetos.setPreferredSize(new Dimension(150, 30));
@@ -132,12 +144,10 @@ public class ObjetosVista extends JFrame {
 			        panelBotones.add(btnDAO);
 			        
 			        JButton btnArchivosTXT = new JButton("Archivos TXT");
-			        btnArchivosTXT.setBackground(Color.WHITE);
+			        btnArchivosTXT.setBackground(Color.RED);
 			        btnArchivosTXT.addActionListener(new ActionListener() {
 			        	public void actionPerformed(ActionEvent e) {
 			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-			        		FuncionesVista.abrirArchivosTXT();
-			        		dispose();
 			        	}
 			        });
 			        btnArchivosTXT.setPreferredSize(new Dimension(150, 30));
@@ -169,7 +179,7 @@ public class ObjetosVista extends JFrame {
         
 	        JTextPane txtpnPackagePlantillasPublic = new JTextPane();
 	        txtpnPackagePlantillasPublic.setEditable(false);
-	        txtpnPackagePlantillasPublic.setText("public class Objeto {\r\n\r\n\tprivate String variable;\r\n\r\n\t// ----------Constructor----------//\r\n\tpublic Objeto() {\r\n\t\tthis.variable = \"\";\r\n\t}\r\n\tpublic Objeto(String variable) {\r\n\t\tthis.variable = variable;\r\n\t}\r\n\t// ----------Constructor----------//\r\n\r\n\t\r\n\t// --------------SET--------------//\r\n\tpublic void setVariable(String variable) {\r\n\t\tthis.variable = variable;\r\n\t}\r\n\t// --------------SET--------------//\r\n\r\n\t\r\n\t// --------------GET--------------//\r\n\tpublic String getVariable() {\r\n\t\treturn variable;\r\n\t}\r\n\t// --------------GET--------------//\r\n\r\n\t\r\n\t// -----------toString------------//\r\n\t@Override\r\n\tpublic String toString() {\r\n\t\treturn \"Ejemplo [variable=\" + variable + \"]\";\r\n\t}\r\n\t// -----------toString------------//\r\n\r\n}\r\n");
+	        txtpnPackagePlantillasPublic.setText("import java.io.*;\r\n\r\npublic class ManejoArchivos {\r\n\r\n    // Función para crear un archivo\r\n    public static void crearArchivo(String nombreArchivo) {\r\n        try {\r\n            File archivo = new File(nombreArchivo);\r\n            if (archivo.createNewFile()) {\r\n                System.out.println(\"Archivo creado: \" + archivo.getName());\r\n            } else {\r\n                System.out.println(\"El archivo ya existe.\");\r\n            }\r\n        } catch (IOException e) {\r\n            System.out.println(\"Ocurrió un error al crear el archivo.\");\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    // Función para escribir en un archivo\r\n    public static void escribirArchivo(String nombreArchivo, String contenido) {\r\n        try {\r\n            FileWriter escritor = new FileWriter(nombreArchivo);\r\n            escritor.write(contenido);\r\n            escritor.close();\r\n            System.out.println(\"Se escribió en el archivo correctamente.\");\r\n        } catch (IOException e) {\r\n            System.out.println(\"Ocurrió un error al escribir en el archivo.\");\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    // Función para leer desde un archivo\r\n    public static void leerArchivo(String nombreArchivo) {\r\n        try {\r\n            File archivo = new File(nombreArchivo);\r\n            BufferedReader lector = new BufferedReader(new FileReader(archivo));\r\n            String linea;\r\n            while ((linea = lector.readLine()) != null) {\r\n                System.out.println(linea);\r\n            }\r\n            lector.close();\r\n        } catch (IOException e) {\r\n            System.out.println(\"Ocurrió un error al leer el archivo.\");\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    // Función para borrar un archivo\r\n    public static void borrarArchivo(String nombreArchivo) {\r\n        try {\r\n            File archivo = new File(nombreArchivo);\r\n            if (archivo.delete()) {\r\n                System.out.println(\"El archivo ha sido borrado.\");\r\n            } else {\r\n                System.out.println(\"No se pudo borrar el archivo.\");\r\n            }\r\n        } catch (Exception e) {\r\n            System.out.println(\"Ocurrió un error al borrar el archivo.\");\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n\r\n    public static void main(String[] args) {\r\n        String nombreArchivo = \"archivo.txt\";\r\n        \r\n        // Ejemplo de uso\r\n        crearArchivo(nombreArchivo);\r\n        escribirArchivo(nombreArchivo, \"Hola, mundo!\");\r\n        leerArchivo(nombreArchivo);\r\n        borrarArchivo(nombreArchivo);\r\n    }\r\n}\r\n");
 	        scrollContenido.setViewportView(txtpnPackagePlantillasPublic);
 	        txtpnPackagePlantillasPublic.setCaretPosition(0); // Mueve el cursor al principio del JTextPane
 	        scrollContenido.getViewport().setViewPosition(new Point(0, 0)); // Mueve el JScrollPane al principio del JTextPane
@@ -180,6 +190,6 @@ public class ObjetosVista extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+	}
 
 }

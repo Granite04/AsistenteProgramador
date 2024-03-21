@@ -74,111 +74,117 @@ public class DaoVista extends JFrame {
         lblTitulo.setHorizontalAlignment(SwingConstants.CENTER);
         contentPane.add(lblTitulo, BorderLayout.NORTH);
         
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setOpaque(true);
-        contentPane.add(scrollPane, BorderLayout.EAST);
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        
-        JPanel panelBotones = new JPanel();
-        panelBotones.setOpaque(true);
-        scrollPane.setViewportView(panelBotones);
-        panelBotones.setLayout(new GridLayout(0, 1, 0, 0));
-        
-        JButton principal = new JButton("Principal");
-        principal.setBackground(Color.WHITE);
-        principal.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cordenadas(getBounds());
-        		FuncionesVista.abrirPrincipal();
-        		dispose();
-        	}
-        });
-        principal.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(principal);
+        JPanel panelLateral = new JPanel();
+        contentPane.add(panelLateral, BorderLayout.WEST);
+        panelLateral.setLayout(new BorderLayout(0, 0));
 
-        JButton objetos = new JButton("Objetos");
-        objetos.setBackground(Color.WHITE);
-        objetos.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        		FuncionesVista.abrirObjetos();
-        		dispose();
-        	}
-        });
-        objetos.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(objetos);
-        
-        JButton btnBD = new JButton("Base de Datos");
-        btnBD.setBackground(Color.WHITE);
-        btnBD.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        		FuncionesVista.abrirBaseDatos();
-        		dispose();
-        	}
-        });
-        btnBD.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnBD);
-        
-        JButton btnDAO = new JButton("DAO");
-        btnDAO.setBackground(Color.RED);
-        btnDAO.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        	}
-        });
-        btnDAO.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnDAO);
-        
-        JButton btnNewButton_1_4 = new JButton("Botón 2");
-        btnNewButton_1_4.setBackground(Color.WHITE);
-        btnNewButton_1_4.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        	}
-        });
-        btnNewButton_1_4.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnNewButton_1_4);
-        
-        JButton btnNewButton_1_3 = new JButton("Botón 2");
-        btnNewButton_1_3.setBackground(Color.WHITE);
-        btnNewButton_1_3.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        	}
-        });
-        btnNewButton_1_3.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnNewButton_1_3);
-        
-        JButton btnNewButton_1_2 = new JButton("Botón 2");
-        btnNewButton_1_2.setBackground(Color.WHITE);
-        btnNewButton_1_2.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        	}
-        });
-        btnNewButton_1_2.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnNewButton_1_2);
-        
-        JButton btnNewButton_1_1 = new JButton("Botón 2");
-        btnNewButton_1_1.setBackground(Color.WHITE);
-        btnNewButton_1_1.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
-        	}
-        });
-        btnNewButton_1_1.setPreferredSize(new Dimension(150, 30));
-        panelBotones.add(btnNewButton_1_1);
+	        JPanel panelMasMenos = new JPanel();
+	        panelLateral.add(panelMasMenos, BorderLayout.SOUTH);
+	
+		        JButton btnMas = new JButton("+");
+		        panelMasMenos.add(btnMas);
+		
+		        JButton btnMenps = new JButton("-");
+		        panelMasMenos.add(btnMenps);
+	
+	        JScrollPane scrollBotones = new JScrollPane();
+	        scrollBotones.setOpaque(true);
+	        panelLateral.add(scrollBotones, BorderLayout.CENTER);
+	        scrollBotones.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	
+		        JPanel panelBotones = new JPanel();
+		        panelBotones.setOpaque(true);
+		        scrollBotones.setViewportView(panelBotones);
+		        panelBotones.setLayout(new GridLayout(0, 1, 0, 0));
+		        
+			        JButton principal = new JButton("Principal");
+			        principal.setBackground(Color.WHITE);
+			        principal.addActionListener(new ActionListener() {
+			        	public void actionPerformed(ActionEvent e) {
+			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        		FuncionesVista.abrirPrincipal();
+			        		dispose();
+			        	}
+			        });
+			        principal.setPreferredSize(new Dimension(150, 30));
+			        panelBotones.add(principal);
+			
+			        JButton objetos = new JButton("Objetos");
+			        objetos.setBackground(Color.WHITE);
+			        objetos.addActionListener(new ActionListener() {
+			        	public void actionPerformed(ActionEvent e) {
+			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        		FuncionesVista.abrirObjetos();
+			        		dispose();
+			        	}
+			        });
+			        objetos.setPreferredSize(new Dimension(150, 30));
+			        panelBotones.add(objetos);
+			        
+			        JButton btnBD = new JButton("Base de Datos");
+			        btnBD.setBackground(Color.WHITE);
+			        btnBD.addActionListener(new ActionListener() {
+			        	public void actionPerformed(ActionEvent e) {
+			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        		FuncionesVista.abrirBaseDatos();
+			        		dispose();
+			        	}
+			        });
+			        btnBD.setPreferredSize(new Dimension(150, 30));
+			        panelBotones.add(btnBD);
+			        
+			        JButton btnDAO = new JButton("DAO");
+			        btnDAO.setBackground(Color.RED);
+			        btnDAO.addActionListener(new ActionListener() {
+			        	public void actionPerformed(ActionEvent e) {
+			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        	}
+			        });
+			        btnDAO.setPreferredSize(new Dimension(150, 30));
+			        panelBotones.add(btnDAO);
+			        
+			        JButton btnArchivosTXT = new JButton("Archivos TXT");
+			        btnArchivosTXT.setBackground(Color.WHITE);
+			        btnArchivosTXT.addActionListener(new ActionListener() {
+			        	public void actionPerformed(ActionEvent e) {
+			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        		FuncionesVista.abrirArchivosTXT();
+			        		dispose();
+			        	}
+			        });
+			        btnArchivosTXT.setPreferredSize(new Dimension(150, 30));
+			        panelBotones.add(btnArchivosTXT);
+			        
+			        JButton btnNewButton_1_3 = new JButton("Botón 2");
+			        btnNewButton_1_3.setBackground(Color.WHITE);
+			        btnNewButton_1_3.addActionListener(new ActionListener() {
+			        	public void actionPerformed(ActionEvent e) {
+			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        	}
+			        });
+			        btnNewButton_1_3.setPreferredSize(new Dimension(150, 30));
+			        panelBotones.add(btnNewButton_1_3);
+			        
+			        JButton btnNewButton_1_2 = new JButton("Botón 2");
+			        btnNewButton_1_2.setBackground(Color.WHITE);
+			        btnNewButton_1_2.addActionListener(new ActionListener() {
+			        	public void actionPerformed(ActionEvent e) {
+			        		FuncionesVista.cambioVentana(getBounds(), getWidth(), getHeight());
+			        	}
+			        });
+			        btnNewButton_1_2.setPreferredSize(new Dimension(150, 30));
+			        panelBotones.add(btnNewButton_1_2);
         
         JScrollPane scrollContenido = new JScrollPane();
         contentPane.add(scrollContenido, BorderLayout.CENTER);
         scrollContenido.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
-        JTextPane txtpnPackagePlantillasPublic = new JTextPane();
-        txtpnPackagePlantillasPublic.setText("import java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport db.Konexioa;\r\n\r\npublic class Dao {\r\n\t\r\n\tpublic List<Objeto> lortuZinemak() {\r\n\r\n\t    List<Objeto> objetoList = new ArrayList<>();\r\n\r\n\t    try {\r\n\t    \tKonexioa.konexioa(); // Asegúrate de que la conexión está abierta\r\n\t    \t\r\n\t    \tPreparedStatement preparedStatement = Konexioa.konektatua.prepareStatement(\"Kontzulta\");\r\n\t        ResultSet resultSet = preparedStatement.executeQuery();\r\n\r\n\t        while (resultSet.next()) {\r\n\t        \tString aldagaia = resultSet.getString(\"Dato\");\r\n\t                \r\n\t            Objeto objeto = new Objeto(aldagaia);\r\n\t            objetoList.add(objeto);    \r\n\t        }\r\n\t           \r\n\t    } catch (SQLException e) {\r\n\t    \te.printStackTrace();\r\n\t    } finally {\r\n\t    \tKonexioa.konexioaExit(); // Asegúrate de cerrar la conexión después de usarla\r\n\t    }\r\n\r\n\t    return objetoList;\r\n\t    \r\n\t}\r\n\t\r\n}\r\n");
-        scrollContenido.setViewportView(txtpnPackagePlantillasPublic);
-        txtpnPackagePlantillasPublic.setCaretPosition(0); // Mueve el cursor al principio del JTextPane
-        scrollContenido.getViewport().setViewPosition(new Point(0, 0)); // Mueve el JScrollPane al principio del JTextPane
+	        JTextPane txtpnPackagePlantillasPublic = new JTextPane();
+	        txtpnPackagePlantillasPublic.setEditable(false);
+	        txtpnPackagePlantillasPublic.setText("import java.sql.PreparedStatement;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport db.Konexioa;\r\n\r\npublic class Dao {\r\n\t\r\n\tpublic List<Objeto> lortuZinemak() {\r\n\r\n\t    List<Objeto> objetoList = new ArrayList<>();\r\n\r\n\t    try {\r\n\t    \tKonexioa.konexioa(); // Asegúrate de que la conexión está abierta\r\n\t    \t\r\n\t    \tPreparedStatement preparedStatement = Konexioa.konektatua.prepareStatement(\"Kontzulta\");\r\n\t        ResultSet resultSet = preparedStatement.executeQuery();\r\n\r\n\t        while (resultSet.next()) {\r\n\t        \tString aldagaia = resultSet.getString(\"Dato\");\r\n\t                \r\n\t            Objeto objeto = new Objeto(aldagaia);\r\n\t            objetoList.add(objeto);    \r\n\t        }\r\n\t           \r\n\t    } catch (SQLException e) {\r\n\t    \te.printStackTrace();\r\n\t    } finally {\r\n\t    \tKonexioa.konexioaExit(); // Asegúrate de cerrar la conexión después de usarla\r\n\t    }\r\n\r\n\t    return objetoList;\r\n\t    \r\n\t}\r\n\t\r\n}\r\n");
+	        scrollContenido.setViewportView(txtpnPackagePlantillasPublic);
+	        txtpnPackagePlantillasPublic.setCaretPosition(0); // Mueve el cursor al principio del JTextPane
+	        scrollContenido.getViewport().setViewPosition(new Point(0, 0)); // Mueve el JScrollPane al principio del JTextPane
 
         // Cargar la imagen de fondo
         try {

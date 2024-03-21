@@ -7,8 +7,8 @@ public class Variables {
 	
 	//Pantalla
 	public static Toolkit tk = Toolkit.getDefaultToolkit();
-	public static int resolucionX = 600;
-	public static int resolucionY = 375;
+	public static int resolucionX = 1000;
+	public static int resolucionY = 650;
 	
 	public static int cordX = 100;
 	public static int cordY = 100;
